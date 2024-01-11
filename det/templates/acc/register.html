@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
+    {% load static %}
+	<link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+</head>
+<body>
+
+<h1>This is the register page</h1>
+
+<form method="POST" autocomplete="off">
+
+    {% csrf_token %}
+
+    <label for="{{ registerform.username.id_for_label }}">Username:</label>
+    {{ registerform.username }}
+    <small>{{ registerform.username.help_text }}</small>
+    {{ registerform.username.errors }}
+<br><br>
+    <label for="{{ registerform.email.id_for_label }}">Email:</label>
+    {{ registerform.email }}
+    <small>{{ registerform.email.help_text }}</small>
+    {{ registerform.email.errors }}
+<br><br>
+    <label for="{{ registerform.password1.id_for_label }}">Password:</label>
+    {{ registerform.password1 }}
+    <small>{{ registerform.password1.help_text }}</small>
+    {{ registerform.password1.errors }}
+
+    <label for="{{ registerform.password2.id_for_label }}">Confirm Password:</label>
+    {{ registerform.password2 }}
+    <small>{{ registerform.password2.help_text }}</small>
+    {{ registerform.password2.errors }}
+<br><br>
+    <input type="submit" value="Register"/>
+
+</form>
+
+<a href="{% url 'my login' %}"> Login here </a>
+
+</body>
+</html>

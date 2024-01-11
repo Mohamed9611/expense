@@ -1,0 +1,25 @@
+<!-- delete_account.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Confirm Account Deletion</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- Add any additional styles or links here -->
+</head>
+<body>
+
+<div class="w3-container w3-padding">
+    <h2 class="w3-text-red">Confirm Account Deletion</h2>
+    <p class="w3-text-grey">Are you sure you want to delete your account?</p>
+
+    <form method="post" class="w3-container">
+        {% csrf_token %}
+        <button type="submit" class="w3-button w3-red w3-margin-top">Delete Account</button>
+    </form>
+</div>
+
+</body>
+</html>

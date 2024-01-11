@@ -1,0 +1,22 @@
+{% extends 'dashboard.html' %}
+
+{% block content %}
+ {% load static %}
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+   <link rel="stylesheet" href="{% static 'css/delete_expense.css' %}">
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="display-4">Trash Expense</h1>
+
+                <p>Are you sure you want to move to trash this expense?</p>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-block">Trash</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+    {% load static %}
+        <!-- Add Bootstrap CSS CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'add_expense.css' %}">
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="display-4">Add Expense</h1>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <!-- Add a hidden input field for the user -->
+                    <input type="hidden" name="user" value="{{ request.user.id }}">
+                    
+                    <table class="table">
+                        {{ expenseform.as_table }}
+                    </table>
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

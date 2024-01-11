@@ -1,0 +1,20 @@
+{% extends 'dashboard.html' %}
+
+{% block content %}
+  <div class="w3-container w3-margin">
+    <h2 class="w3-text-dark-grey">User Details:</h2>
+    
+    <form method="post" class="w3-container">
+      {% csrf_token %}
+      
+      <div class="w3-responsive">
+        <table class="w3-table-all">
+          {{ user_form.as_table }}
+          {{ profile_form.as_table }}
+        </table>
+      </div>
+      
+      <input class="w3-btn w3-blue-grey" type="submit" value="Update" >
+    </form>
+  </div>
+{% endblock content %}

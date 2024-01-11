@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<title>Home Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+
+<!-- Sidebar -->
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
+  <h3 class="w3-bar-item w3-light-blue w3-bar-block">Daily Expense Tracker</h3>
+  <a href="{% url 'expense_list' status='draft' %}"class="w3-bar-item w3-button">Expense List</a>
+  <a href="{% url 'add_expense' %}"class="w3-bar-item w3-button">Add Expense</a>
+  <a href="{% url 'profile' %}"class="w3-bar-item w3-button">Profile</a>
+  <a href="{% url 'change_password' %}"class="w3-bar-item w3-button">Change Password</a>
+  <a href="{% url 'delete_account' %}"class="w3-bar-item w3-button">Delete My Account</a>
+  <a href="{% url 'user-logout' %}"class="w3-bar-item w3-button">Logout here</a>
+  
+</div>
+
+<!-- Page Content -->
+<div style="margin-left:25%">
+
+<div class="w3-container w3-blue">
+  <h1>Welcome, {{ user.get_username }}</h1>
+</div>
+
+
+{% block content %}
+  {% endblock content %}
+
+
+</div>
+      
+</body>
+</html>

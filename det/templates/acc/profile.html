@@ -1,0 +1,40 @@
+{% extends 'dashboard.html' %}
+
+{% block content %}
+  <div class="w3-container">
+    <h2>User Details:</h2>
+
+    <table class="w3-table w3-bordered w3-striped">
+      <tr>
+        <th>Username</th>
+        <td>{{ user.get_username }}</td>
+      </tr>
+
+      <tr>
+        <th>Email</th>
+        <td>{{ request.user.email }}</td>
+      </tr>
+
+      <tr>
+        <th>First Name</th>
+        <td>{{ user.profile.first_name }}</td>
+      </tr>
+
+      <tr>
+        <th>Last Name</th>
+        <td>{{ user.profile.last_name }}</td>
+      </tr>
+
+      <tr>
+        <th>Phone</th>
+        <td>{{ user.profile.phone }}</td>
+      </tr>
+
+      <tr>
+        <td colspan="2" class="w3-center">
+          <a href="{% url 'profile_update' %}" class="w3-btn w3-blue">Edit</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+{% endblock content %}

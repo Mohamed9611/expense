@@ -1,0 +1,12 @@
+{% extends 'dashboard.html' %}
+
+{% block content %}
+    <div class="w3-container">
+        <h2 class="w3-text-green">Restore Expense</h2>
+        <p>Are you sure you want to restore the expense "{{ expense.expense_title }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <input type="submit" class="w3-button w3-green" value="Restore">
+        </form>
+    </div>
+{% endblock %}

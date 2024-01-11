@@ -1,0 +1,77 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/expense_list.css' %}">
+   
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <h3{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+    <div class="w3-container">
+    <a href="{% url 'expense_list' status='draft' %}" class="btn btn-primary">Published</a>
+    <a href="{% url 'expense_list' status='trash' %}" class="btn btn-primary">Trash</a>
+    
+    </div>
+
+
+                <h1 class="display-4">Expense List</h1>
+
+                {% load tz %}
+<h4>{{ request.user.get_username }}'s Expense Record</h4>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Expense Title</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for expense in expenses %}
+                    <tr>
+                        <td>{{ expense.expense_title }}</td>
+                        <td>{{ expense.category }}</td>
+                        <td>{{ expense.amount }}</td>
+                        <td>{{ expense.date }}</td>
+                        <td>{{ expense.description }}</td>
+                        <td>{{ expense.created_at|timezone:"Asia/Kolkata" }}</td>
+                        <td>{{ expense.updated_at|timezone:"Asia/Kolkata" }}</td>
+
+
+                        <td class="action-links">
+                            <a href="{% url 'edit_expense' expense.pk %}" class="btn btn-primary">Edit</a>
+                            {% if status == 'draft' %}
+                                <a href="{% url 'delete_expense' expense.pk %}" class="btn btn-primary">Trash</a>
+                            {% elif status == 'trash' %}
+                                <a href="{% url 'restore_expense' expense.pk %}" class="btn btn-primary">Restore</a>
+                                <a href="{% url 'permanently_delete_expense' expense.pk %}" class="btn btn-danger">Permanently Delete</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+<br>
+                <a href="{% url 'add_expense' %}" class="btn btn-primary">Add Expense</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
